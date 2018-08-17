@@ -7,7 +7,7 @@ Train a model that can colorize a grayscale anime face image.
 **1. Obtain Dataset**
 
 https://www.kaggle.com/mylesoneill/tagged-anime-illustrations<br/>
-Images are 96x96.
+Used the anime face character dataset. Images are 96x96.
 
 **2. Cleaning**
 
