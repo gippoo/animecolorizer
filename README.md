@@ -29,10 +29,10 @@ Slight differences:
 
 **5. Training the Model**
 
-Loss function: MAE
-Optimizer: RMSProp
-Epochs: 60
-Batch Size: 8
+-Loss function: MAE
+-Optimizer: RMSProp
+-Epochs: 60
+-Batch Size: 8
 
 **6. Applying the Model to New Images**
 
