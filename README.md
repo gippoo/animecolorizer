@@ -28,7 +28,7 @@ The original color image is left as the target output. (Output size: 96x96x3)<br
 
 U-net from https://github.com/4g/unet-color/blob/master/colorizer_nongan.py<br/>
 Slight differences:<br/>
--Used relu instead of leakyrelu<br/>
+-Used ReLU instead of leakyReLU<br/>
 -No batch norm
 
 **5. Training the Model**
@@ -41,7 +41,7 @@ Batch Size: 8<br/>
 Final training loss: 0.0477<br/>
 Final validation loss: 0.0591
 
-Loss did not seem to have fully converged.
+Loss did not seem to have fully converged upon training completion.
 
 **6. Applying the Model to New Images**
 
