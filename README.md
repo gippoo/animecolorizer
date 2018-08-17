@@ -1,5 +1,8 @@
 # animecolorizer
 
+## Goal:
+Train a model that can colorize a Grayscale image.
+
 ## Method:
 **1. Obtain Dataset**
 
