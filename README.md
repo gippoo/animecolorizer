@@ -50,3 +50,5 @@ Middle: Output from model<br/>
 Right: Original image<br/>
 
 ![TestImgs](https://github.com/gippoo/animecolorizer/blob/master/testimgs.png)
+
+Note that the model never gets to see the original image; it only sees the grayscale version.
