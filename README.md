@@ -3,7 +3,7 @@
 ## Method:
 **1. Obtain Dataset**<br/>
 https://www.kaggle.com/mylesoneill/tagged-anime-illustrations<br/>
-images are 96x96
+Images are 96x96
 
 **2. Cleaning**<br/>
 Manually cleaned data by deleteing images that were false positives (not actually having blue hair)<br/>
