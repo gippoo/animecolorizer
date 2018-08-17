@@ -14,6 +14,7 @@ Convert images with the 'blue_hair' tag to grayscale. This serves as the input t
 The original color image is left as the target output. (Output size: 96x96x3)
 
 Sample training images:
+
 ![TrainingImgs](https://github.com/gippoo/animecolorizer/blob/master/trainingimgs.png)
 
 **4. Model Architecture**
