@@ -35,6 +35,11 @@ Optimizer: RMSProp<br/>
 Epochs: 60<br/>
 Batch Size: 8<br/>
 
+Final training loss: 0.0477<br/>
+Final validation loss: 0.0591
+
+Loss did not seem to have fully converged.
+
 **6. Applying the Model to New Images**
 
 Left: Grayscale image sent as input to the model<br/>
