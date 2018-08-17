@@ -50,3 +50,5 @@ Middle: Output from model<br/>
 Right: Original image<br/>
 
 ![TestImgs](https://github.com/gippoo/animecolorizer/blob/master/testimgs.png)
+
+## Code coming soon. Need to clean up my notebook.
