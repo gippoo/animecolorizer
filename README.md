@@ -17,7 +17,7 @@ Sample training images:
 
 **3. Creating Training Data**
 
-Convert images with the 'blue_hair' tag to grayscale. This serves as the input to the network. (Input size: 96x96x1)<br/>
+Convert images to grayscale. This serves as the input to the network. (Input size: 96x96x1)<br/>
 The original color image is left as the target output. (Output size: 96x96x3)<br/>
 
 
