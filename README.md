@@ -8,7 +8,7 @@ Images are 96x96
 
 **2. Cleaning**
 
-Manually cleaned data by deleteing images that were false positives (not actually having blue hair)<br/>
+Manually cleaned data by deleteing images that were false positives (not actually having blue hair) or images where no face was present<br/>
 Ended up with 462 images. 412 used for training. 50 held out for validation.<br/>
 
 Sample training images:
