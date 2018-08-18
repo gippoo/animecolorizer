@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from keras.layers import Conv2D, UpSampling2D, InputLayer, Input, concatenate, Dropout
+from keras.layers import Conv2D, UpSampling2D, Input, concatenate, Dropout
 from keras.models import Model
 import matplotlib.pyplot as plt
 
