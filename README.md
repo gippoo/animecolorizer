@@ -3,6 +3,9 @@
 ## Goal:
 Train a model that can colorize a grayscale anime face image.
 
+## Code:
+https://github.com/gippoo/animecolorizer/blob/master/colorizer.py
+
 ## Method:
 **1. Obtain Dataset**
 
