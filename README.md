@@ -51,4 +51,4 @@ Right: Original image<br/>
 
 ![TestImgs](https://github.com/gippoo/animecolorizer/blob/master/testimgs.png)
 
-Note that the model never gets to see the original image; it only sees the grayscale version.
+Note that the model never gets to see the original images in these test cases; it only sees the grayscale versions.
