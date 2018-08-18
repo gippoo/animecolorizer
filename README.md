@@ -29,7 +29,7 @@ The original color image is left as the target output. (Output size: 96x96x3)<br
 U-net from https://github.com/4g/unet-color/blob/master/colorizer_nongan.py<br/>
 Slight differences:<br/>
 -Used ReLU instead of leakyReLU<br/>
--No batch norm
+-No batch norm<br/>
 -Sigmoid activation function in last layer (b/c color values were normalized to be between 0 and 1 instead of -1 to 1)
 
 **5. Training the Model**
