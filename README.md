@@ -47,8 +47,19 @@ Final validation loss: 0.0591
 
 Loss did not seem to have fully converged upon training completion.
 
-**6. Applying the Model to New Images**
+**6. Examine Validation Results**
 
+Left: Grayscale image sent as input to the model<br/>
+Middle: Output from model<br/>
+Right: Original image<br/>
+
+![ValImgs](https://github.com/gippoo/animecolorizer/blob/master/valimgs.png)
+
+The model does a decent job of coloring the grayscale images.
+
+## Apply Model to New Images
+
+We can now take the model to new images outside of the training and validation data.<br/>
 Left: Grayscale image sent as input to the model<br/>
 Middle: Output from model<br/>
 Right: Original image<br/>
