@@ -30,6 +30,7 @@ U-net from https://github.com/4g/unet-color/blob/master/colorizer_nongan.py<br/>
 Slight differences:<br/>
 -Used ReLU instead of leakyReLU<br/>
 -No batch norm
+-Sigmoid activation function in last layer (b/c color values were normalized to be between 0 and 1 instead of -1 to 1)
 
 **5. Training the Model**
 
