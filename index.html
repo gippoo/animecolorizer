@@ -17,9 +17,9 @@
 <script>
 
 async function init() {
-	blue = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
+	blueC = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
 	//blonde = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
-	red = await tf.loadModel('https://gippoo.github.io/animecolorizer/red/model.json');
+	redC = await tf.loadModel('https://gippoo.github.io/animecolorizer/red/model.json');
 	//een = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
 	//rple = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
 }
@@ -78,9 +78,9 @@ function getOutput() {
 	tf.tidy(() => {
 		var inputs = tf.tensor4d(grayscale,[1,96,96,1]);
 		if (randColor == 0) {
-			prediction = blue.predict(inputs);
+			prediction = blueC.predict(inputs);
 		} else if (randColor == 1) {
-			prediction = red.predict(inputs);
+			prediction = redC.predict(inputs);
 		}
 
 		prediction = prediction.flatten().dataSync();
