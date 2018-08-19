@@ -18,53 +18,52 @@
 /*
 async function init() {
 	blue = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-    blonde = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-    red = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-    green = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-    purple = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
+	blonde = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
+	red = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
+	green = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
+	purple = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
 }
 
 init();
 */
 
 var inp;
-var pixarr = [];
+var grayscale = [];
 var b1;
 var b2;
 var randColor = 0;
 var prediction;
-var grayscale;
-var colorImg;
+var idata;
+var colorImg = [];
+var uploadedimg;
 
 function setup() {
 	inp = createInput();
 	b1 = createButton('Submit');
 	b2 = createButton('Colorize');
-    	var canv = createCanvas(250, 300);
+	var canv = createCanvas(250, 300);
 	canv.parent("canholder");
 	inp.parent("things");
 	b1.parent("things");
-    b2.parent("colorize");
-    b2.hide();
-    	inp.elt.placeholder = "Paste URL Here";
+	b2.parent("colorize");
+	b2.hide();
+	inp.elt.placeholder = "Paste URL Here";
 	inp.elt.spellcheck = false;
 	background(255);
     
-    	inp.size(300, 15)
-    	b1.mousePressed(show);
+	inp.size(300, 15)
+	b1.mousePressed(show);
         b2.mousePressed(colorize);
 }
 	
-var uploadedimg;
-	
 function show() {
 	link = inp.value();
-    	uploadedimg = loadImage(link, function(img) {
-    	resizeCanvas(img.width, img.height);
-    	image(img, 0, 0);
+	uploadedimg = loadImage(link, function(img) {
+	resizeCanvas(img.width, img.height);
+	image(img, 0, 0);
 	document.getElementById("result").innerHTML = "Image Loaded";
-    b2.show();
-  	}, function() {
+	b2.show();
+	}, function() {
 	document.getElementById("result").innerHTML = "Failed to Load";
 	});
 }
@@ -72,58 +71,58 @@ function show() {
 
 
 function colorize() {
-    grayscale = get(0, 0, width, height);
-    grayscale.resize(96,96);
-    grayscale.loadPixels();
-    pixarr = [];
-    var colorImg = [];
+	idata = get(0, 0, width, height);
+	idata.resize(96,96);
+	idata.loadPixels();
+	grayscale = [];
+	colorImg = [];
 
-    for (let i = 0; i < grayscale.pixels.length; i += 4) {
-    	let lValue = 0.3 * grayscale.pixels[i] + 0.6 * grayscale.pixels[i+1] + 0.1 * grayscale.pixels[i+2];
-		pixarr.push(1-lValue/255);
-    }
+	for (let i = 0; i < idata.pixels.length; i += 4) {
+		let lValue = 0.3 * idata.pixels[i] + 0.6 * idata.pixels[i+1] + 0.1 * idata.pixels[i+2];
+		grayscale.push(1-lValue/255);
+	}
     
-    randColor = Math.floor(Math.random() * 5);
+	randColor = Math.floor(Math.random() * 5);
     
 
 
 /*
     
-    tf.tidy(() => {
-    	var inputs = tf.tensor4d(pixarr,[1,96,96,1]);
-        if (randColor == 0) {
-        	prediction = blue.predict(inputs);
-        } else if (randColor == 1) {
-        	prediction = blonde.predict(inputs);
-        } else if (randColor == 2) {
-        	prediction = red.predict(inputs);
-        } else if (randColor == 3) {
-        	prediction = green.predict(inputs);
-        } else {
-            prediction = purple.predict(inputs);
-        }
+	tf.tidy(() => {
+		var inputs = tf.tensor4d(grayscale,[1,96,96,1]);
+		if (randColor == 0) {
+			prediction = blue.predict(inputs);
+		} else if (randColor == 1) {
+			prediction = blonde.predict(inputs);
+		} else if (randColor == 2) {
+			prediction = red.predict(inputs);
+		} else if (randColor == 3) {
+			prediction = green.predict(inputs);
+		} else {
+			prediction = purple.predict(inputs);
+		}
             
-    	prediction = prediction.squeeze().dataSync();
+		prediction = prediction.flatten().dataSync();
 		
-        for (let i = 0; i < prediction.length; i += 3 {
-        	colorImg.push(prediction[i]);
-            colorImg.push(prediction[i+1]);
-            colorImg.push(prediction[i+2]);
-            colorImg.push(255);
-        }
+		for (let i = 0; i < prediction.length; i += 3 {
+			colorImg.push(prediction[i]);
+			colorImg.push(prediction[i+1]);
+			colorImg.push(prediction[i+2]);
+			colorImg.push(255);
+		}
         
-        for (let i = 0; i < grayscale.pixels.length; i += 4) {
-			grayscale.pixels[i] = colorImg[i];
-        	grayscale.pixels[i+1] = colorImg[i+1];
-        	grayscale.pixels[i+2] = colorImg[i+2];
-        }
+		for (let i = 0; i < idata.pixels.length; i += 4) {
+			idata.pixels[i] = colorImg[i];
+			idata.pixels[i+1] = colorImg[i+1];
+			idata.pixels[i+2] = colorImg[i+2];
+		}
         
-        grayscale.updatePixels();
+		idata.updatePixels();
         
-        resizeCanvas(grayscale.width, grayscale.height);
-        image(grayscale, 0, 0);
+		resizeCanvas(idata.width, idata.height);
+		image(idata, 0, 0);
         
-     }); 
+	}); 
 */
 
 }
