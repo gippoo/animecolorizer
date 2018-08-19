@@ -30,61 +30,51 @@ init();
 var inp;
 var grayscale = [];
 var b1;
-var b2;
 var randColor = 0;
 var prediction;
 var inputImg;
 var outputImg;
 var colordata = [];
-var uploadedimg;
+var imgLoaded = false;
 
 function setup() {
 	inp = createInput();
-	b1 = createButton('Submit');
-	b2 = createButton('Colorize');
-	var canv = createCanvas(250, 300);
+	b1 = createButton('Colorize');
+	var canv = createCanvas(288, 144);
 	canv.parent("canholder");
 	inp.parent("things");
 	b1.parent("things");
-	b2.parent("colorize");
-	b2.hide();
 	inp.elt.placeholder = "Paste URL Here";
 	inp.elt.spellcheck = false;
 	background(255);
-
-	inp.size(300, 15)
-	b1.mousePressed(show);
-        b2.mousePressed(colorize);
+	inp.size(300, 15);
+	b1.mousePressed(colorize);
 }
 
-function show() {
-	link = inp.value();
-	uploadedimg = loadImage(link, function(img) {
-	resizeCanvas(img.width, img.height);
-	image(img, 0, 0);
-	document.getElementById("result").innerHTML = "Image Loaded";
-	b2.show();
+
+function imageLoader() {
+	var link = inp.value();
+	inputImg = loadImage(link, function(img) {
+		document.getElementById("result").innerHTML = "Image Loaded";
+		imgLoaded = true;
 	}, function() {
-	document.getElementById("result").innerHTML = "Failed to Load";
+		document.getElementById("result").innerHTML = "Failed to Load";
+		imgLoaded = false;
 	});
 }
 
-function colorize() {
-	inputImg = get(0, 0, width, height);
+function getGSData() {
 	inputImg.resize(96,96);
 	inputImg.loadPixels();
 	grayscale = [];
-	colordata = [];
-
+	
 	for (let i = 0; i < inputImg.pixels.length; i += 4) {
 		let lValue = 0.3 * inputImg.pixels[i] + 0.6 * inputImg.pixels[i+1] + 0.1 * inputImg.pixels[i+2];
 		grayscale.push(1-lValue/255);
 	}
+}
 
-	randColor = Math.floor(Math.random() * 5);
-
-/*
-    
+function getOutput() {
 	tf.tidy(() => {
 		var inputs = tf.tensor4d(grayscale,[1,96,96,1]);
 		if (randColor == 0) {
@@ -100,38 +90,51 @@ function colorize() {
 		}
 
 		prediction = prediction.flatten().dataSync();
-
-		for (let i = 0; i < prediction.length; i += 3 {
-			colordata.push(Math.floor(prediction[i]*255);
-			colordata.push(Math.floor(prediction[i+1]*255);
-			colordata.push(Math.floor(prediction[i+2]*255);
-			colordata.push(255);
-		}
-
-		outputImg = get(0, 0, width, height);
-		outputImg.resize(96,96);
-		outputImg.loadPixels();
-
-		for (let i = 0; i < outputImg.pixels.length; i += 4) {
-			outputImg.pixels[i] = colordata[i];
-			outputImg.pixels[i+1] = colordata[i+1];
-			outputImg.pixels[i+2] = colordata[i+2];
-		}
-
-		outputImg.updatePixels();
-
-		resizeCanvas(288, 144);
-		scale(1.5);
-		image(inputImg, 0, 0);
-		image(outputImg, 144, 0);
 	}); 
-*/
 
+	colordata = [];
+	
+	for (let i = 0; i < prediction.length; i += 3) {
+		colordata.push(Math.floor(prediction[i]*255));
+		colordata.push(Math.floor(prediction[i+1]*255));
+		colordata.push(Math.floor(prediction[i+2]*255));
+		colordata.push(255);
+		}
+	
+	outputImg = inputImg;
+	outputImg.loadPixels();
+	
+	for (let i = 0; i < outputImg.pixels.length; i += 4) {
+		outputImg.pixels[i] = colordata[i];
+		outputImg.pixels[i+1] = colordata[i+1];
+		outputImg.pixels[i+2] = colordata[i+2];
+	}
+	
+	outputImg.updatePixels();
 }
+
+function displayFinal() {
+	scale(1.5);
+	image(inputImg, 0, 0);
+	image(outputImg, 144, 0);
+	scale(1);
+}
+
+
+function colorize() {
+	imageLoader();
+	
+	if (imgLoaded) {
+		getGSData();
+		randColor = Math.floor(Math.random() * 5);
+		getOutput();
+		displayFinal();
+	}
+}
+
 
 </script>
 
-<p><span id="result"></span><span id="colorize"></span></p>
 <p id="things"></p>
 <p>Sample URLs: https://gippoo.github.io/characterclassifier/sample.jpg</p>
 <p>https://gippoo.github.io/characterclassifier/sample2.jpg</p>
