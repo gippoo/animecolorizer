@@ -21,7 +21,7 @@ async function init() {
 	blondeC = await tf.loadModel('https://gippoo.github.io/animecolorizer/blonde/model.json');
 	redC = await tf.loadModel('https://gippoo.github.io/animecolorizer/red/model.json');
 	greenC = await tf.loadModel('https://gippoo.github.io/animecolorizer/green/model.json');
-	//purpleC = await tf.loadModel('https://gippoo.github.io/animecolorizer/purple/model.json');
+	purpleC = await tf.loadModel('https://gippoo.github.io/animecolorizer/purple/model.json');
 }
 
 init();
@@ -90,6 +90,8 @@ function getOutput() {
 			prediction = greenC.predict(inputs);
 		} else if (randColor == 3) {
 			prediction = blondeC.predict(inputs);
+		} else if (randColor == 4) {
+			prediction = purpleC.predict(inputs);
 		}
 
 		prediction = prediction.flatten().dataSync();
@@ -130,7 +132,7 @@ function colorize() {
 	setTimeout(function() {
 		if (imgLoaded) {
 			getGSData();
-			randColor = Math.floor(Math.random() * 4);
+			randColor = Math.floor(Math.random() * 5);
 			getOutput();
 			displayFinal();
 		}
