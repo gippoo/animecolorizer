@@ -73,9 +73,10 @@ function getGSData() {
 		grayscale.push(1-lValue/255);
 	}
 	
+	push();
 	scale(1.5);
 	image(inputImg, 0, 0);
-	scale(1);
+	pop();
 }
 
 function getOutput() {
@@ -112,9 +113,10 @@ function getOutput() {
 }
 
 function displayFinal() {
+	push();
 	scale(1.5);
 	image(outputImg, 96, 0);
-	scale(1);
+	pop();
 }
 
 
