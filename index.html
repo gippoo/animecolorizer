@@ -55,7 +55,6 @@ function setup() {
 function imageLoader() {
 	var link = inp.value();
 	inputImg = loadImage(link, function(img) {
-		document.getElementById("result").innerHTML = "Image Loaded";
 		imgLoaded = true;
 	}, function() {
 		document.getElementById("result").innerHTML = "Failed to Load";
