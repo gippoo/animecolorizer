@@ -35,7 +35,7 @@ var randColor = 0;
 var prediction;
 var inputImg;
 var outputImg;
-var colorImg = [];
+var colordata = [];
 var uploadedimg;
 
 function setup() {
@@ -74,7 +74,7 @@ function colorize() {
 	inputImg.resize(96,96);
 	inputImg.loadPixels();
 	grayscale = [];
-	colorImg = [];
+	colordata = [];
 
 	for (let i = 0; i < inputImg.pixels.length; i += 4) {
 		let lValue = 0.3 * inputImg.pixels[i] + 0.6 * inputImg.pixels[i+1] + 0.1 * inputImg.pixels[i+2];
@@ -102,10 +102,10 @@ function colorize() {
 		prediction = prediction.flatten().dataSync();
 
 		for (let i = 0; i < prediction.length; i += 3 {
-			colorImg.push(Math.floor(prediction[i]*255);
-			colorImg.push(Math.floor(prediction[i+1]*255);
-			colorImg.push(Math.floor(prediction[i+2]*255);
-			colorImg.push(255);
+			colordata.push(Math.floor(prediction[i]*255);
+			colordata.push(Math.floor(prediction[i+1]*255);
+			colordata.push(Math.floor(prediction[i+2]*255);
+			colordata.push(255);
 		}
 
 		outputImg = get(0, 0, width, height);
@@ -113,15 +113,15 @@ function colorize() {
 		outputImg.loadPixels();
 
 		for (let i = 0; i < outputImg.pixels.length; i += 4) {
-			outputImg.pixels[i] = colorImg[i];
-			outputImg.pixels[i+1] = colorImg[i+1];
-			outputImg.pixels[i+2] = colorImg[i+2];
+			outputImg.pixels[i] = colordata[i];
+			outputImg.pixels[i+1] = colordata[i+1];
+			outputImg.pixels[i+2] = colordata[i+2];
 		}
 
 		outputImg.updatePixels();
 
 		resizeCanvas(288, 144);
-		scale(2);
+		scale(1.5);
 		image(inputImg, 0, 0);
 		image(outputImg, 144, 0);
 	}); 
