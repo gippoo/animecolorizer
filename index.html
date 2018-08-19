@@ -118,12 +118,14 @@ function displayFinal() {
 function colorize() {
 	imageLoader();
 	
-	if (imgLoaded) {
-		getGSData();
-		randColor = Math.floor(Math.random() * 2);
-		getOutput();
-		displayFinal();
-	}
+	setTimeout(function() {
+		if (imgLoaded) {
+			getGSData();
+			randColor = Math.floor(Math.random() * 2);
+			getOutput();
+			displayFinal();
+		}
+	}, 1000)
 }
 
 
