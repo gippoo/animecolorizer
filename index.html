@@ -72,6 +72,10 @@ function getGSData() {
 		let lValue = 0.3 * inputImg.pixels[i] + 0.6 * inputImg.pixels[i+1] + 0.1 * inputImg.pixels[i+2];
 		grayscale.push(1-lValue/255);
 	}
+	
+	scale(1.5);
+	image(inputImg, 0, 0);
+	scale(1);
 }
 
 function getOutput() {
@@ -109,7 +113,6 @@ function getOutput() {
 
 function displayFinal() {
 	scale(1.5);
-	image(inputImg, 0, 0);
 	image(outputImg, 96, 0);
 	scale(1);
 }
