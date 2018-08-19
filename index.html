@@ -15,17 +15,17 @@
 </div>
 
 <script>
-/*
+
 async function init() {
-	blue = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-	blonde = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-	red = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-	green = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
-	purple = await tf.loadModel('https://gippoo.github.io/characterclassifier/shokugeki3.json');
+	blue = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
+	//blonde = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
+	red = await tf.loadModel('https://gippoo.github.io/animecolorizer/red/model.json');
+	//een = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
+	//rple = await tf.loadModel('https://gippoo.github.io/animecolorizer/blue/model.json');
 }
 
 init();
-*/
+
 
 var inp;
 var grayscale = [];
@@ -80,13 +80,7 @@ function getOutput() {
 		if (randColor == 0) {
 			prediction = blue.predict(inputs);
 		} else if (randColor == 1) {
-			prediction = blonde.predict(inputs);
-		} else if (randColor == 2) {
 			prediction = red.predict(inputs);
-		} else if (randColor == 3) {
-			prediction = green.predict(inputs);
-		} else {
-			prediction = purple.predict(inputs);
 		}
 
 		prediction = prediction.flatten().dataSync();
@@ -126,7 +120,7 @@ function colorize() {
 	
 	if (imgLoaded) {
 		getGSData();
-		randColor = Math.floor(Math.random() * 5);
+		randColor = Math.floor(Math.random() * 2);
 		getOutput();
 		displayFinal();
 	}
