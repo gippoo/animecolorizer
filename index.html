@@ -118,7 +118,7 @@ function getOutput() {
 		colordata.push(255);
 		}
 	
-	outputImg = inputImg;
+	outputImg = createImage(96,96);
 	outputImg.loadPixels();
 	
 	for (let i = 0; i < outputImg.pixels.length; i += 4) {
