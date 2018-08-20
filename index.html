@@ -42,6 +42,7 @@ var inp;
 var grayscale = [];
 var b1;
 var randColor = 5;
+var randNum = 5;
 var prediction;
 var inputImg;
 var outputImg;
@@ -90,6 +91,14 @@ function getGSData() {
 	image(inputImg, 0, 0);
 	pop();
 }
+
+function chooseColor() {
+	while (randColor == randNum) {
+		randNum = Math.floor(Math.random() * 5);
+	randColor = randNum;
+	}
+}
+	
 
 function getOutput() {
 	tf.tidy(() => {
@@ -162,10 +171,7 @@ function colorize() {
 	setTimeout(function() {
 		if (imgLoaded) {
 			getGSData();
-			let randNum = Math.floor(Math.random() * 5);
-			if (randColor != randNum) {
-				randColor = randNum;
-			}
+			chooseColor();
 			getOutput();
 			displayFinal();
 		}
