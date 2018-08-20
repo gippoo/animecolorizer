@@ -47,6 +47,7 @@ var inputImg;
 var outputImg;
 var colordata = [];
 var imgLoaded = false;
+var link;
 
 function setup() {
 	inp = createInput();
@@ -64,7 +65,7 @@ function setup() {
 
 
 function imageLoader() {
-	var link = inp.value();
+	link = inp.value();
 	inputImg = loadImage(link, function(img) {
 		imgLoaded = true;
 		document.getElementById("result").innerHTML = "LEFT = Original, RIGHT = Colorized";
@@ -138,7 +139,10 @@ function displayFinal() {
 
 
 function colorize() {
-	imageLoader();
+	if (link != inp.value()) {
+		imageLoader();
+		console.log('New image loaded');
+	}
 	
 	setTimeout(function() {
 		if (imgLoaded) {
