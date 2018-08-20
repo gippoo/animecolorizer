@@ -108,7 +108,8 @@ function getOutput() {
 
 		prediction = prediction.flatten().dataSync();
 	}); 
-
+	
+	/*
 	colordata = [];
 	
 	for (let i = 0; i < prediction.length; i += 3) {
@@ -118,14 +119,27 @@ function getOutput() {
 		colordata.push(255);
 		}
 	
-	outputImg = createImage(96,96);
-	outputImg.loadPixels();
 	
 	for (let i = 0; i < outputImg.pixels.length; i += 4) {
 		outputImg.pixels[i] = colordata[i];
 		outputImg.pixels[i+1] = colordata[i+1];
 		outputImg.pixels[i+2] = colordata[i+2];
 		outputImg.pixels[i+3] = 255;
+	}
+	*/
+	
+	outputImg = createImage(96,96);
+	outputImg.loadPixels();
+	var s = 0;
+	var d = 0;
+	
+	for (let i = 0; i < outputImg.pixels.length; i += 4) {
+		outputImg.pixels[s] = Math.floor(prediction[d]*255);
+		outputImg.pixels[s+1] = Math.floor(prediction[d+1]*255);
+		outputImg.pixels[s+2] = Math.floor(prediction[d+2]*255);
+		outputImg.pixels[s+3] = 255;
+		s += 4
+		d += 3
 	}
 	
 	outputImg.updatePixels();
