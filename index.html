@@ -125,6 +125,7 @@ function getOutput() {
 		outputImg.pixels[i] = colordata[i];
 		outputImg.pixels[i+1] = colordata[i+1];
 		outputImg.pixels[i+2] = colordata[i+2];
+		outputImg.pixels[i+3] = 255;
 	}
 	
 	outputImg.updatePixels();
