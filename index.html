@@ -41,7 +41,7 @@ init();
 var inp;
 var grayscale = [];
 var b1;
-var randColor = 0;
+var randColor = 5;
 var prediction;
 var inputImg;
 var outputImg;
@@ -162,7 +162,10 @@ function colorize() {
 	setTimeout(function() {
 		if (imgLoaded) {
 			getGSData();
-			randColor = Math.floor(Math.random() * 5);
+			let randNum = Math.floor(Math.random() * 5);
+			if (randColor != randNum) {
+				randColor = randNum;
+			}
 			getOutput();
 			displayFinal();
 		}
